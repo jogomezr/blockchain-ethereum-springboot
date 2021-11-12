@@ -1,69 +1,57 @@
 package com.example.blockchain.ethereum.domain;
 
 import java.util.Objects;
+import com.example.blockchain.ethereum.domain.ProposalTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * NewProposalTO
+ * InitiativeDetailsTOAllOf
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
 
-public class NewProposalTO  implements Serializable {
+public class InitiativeDetailsTOAllOf  implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  @JsonProperty("name")
-  private String name;
+  @JsonProperty("proposals")
+  @Valid
+  private List<ProposalTO> proposals = null;
 
-  @JsonProperty("image")
-  private String image;
+  public InitiativeDetailsTOAllOf proposals(List<ProposalTO> proposals) {
+    this.proposals = proposals;
+    return this;
+  }
 
-  public NewProposalTO name(String name) {
-    this.name = name;
+  public InitiativeDetailsTOAllOf addProposalsItem(ProposalTO proposalsItem) {
+    if (this.proposals == null) {
+      this.proposals = new ArrayList<>();
+    }
+    this.proposals.add(proposalsItem);
     return this;
   }
 
   /**
-   * Get name
-   * @return name
+   * Get proposals
+   * @return proposals
   */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
+  @ApiModelProperty(value = "")
 
+  @Valid
 
-  public String getName() {
-    return name;
+  public List<ProposalTO> getProposals() {
+    return proposals;
   }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public NewProposalTO image(String image) {
-    this.image = image;
-    return this;
-  }
-
-  /**
-   * Get image
-   * @return image
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-
-  public String getImage() {
-    return image;
-  }
-
-  public void setImage(String image) {
-    this.image = image;
+  public void setProposals(List<ProposalTO> proposals) {
+    this.proposals = proposals;
   }
 
 
@@ -75,23 +63,21 @@ public class NewProposalTO  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NewProposalTO newProposalTO = (NewProposalTO) o;
-    return Objects.equals(this.name, newProposalTO.name) &&
-        Objects.equals(this.image, newProposalTO.image);
+    InitiativeDetailsTOAllOf initiativeDetailsTOAllOf = (InitiativeDetailsTOAllOf) o;
+    return Objects.equals(this.proposals, initiativeDetailsTOAllOf.proposals);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, image);
+    return Objects.hash(proposals);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NewProposalTO {\n");
+    sb.append("class InitiativeDetailsTOAllOf {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    image: ").append(toIndentedString(image)).append("\n");
+    sb.append("    proposals: ").append(toIndentedString(proposals)).append("\n");
     sb.append("}");
     return sb.toString();
   }

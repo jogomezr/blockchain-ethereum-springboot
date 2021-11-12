@@ -100,7 +100,13 @@ public class Initiative implements Serializable {
 		return proposals;
 	}
 
+	public void setProposals(List<Proposal> proposals) {
+		proposals.forEach(p -> p.setInitiative(this));
+		this.proposals = proposals;
+	}
+
 	public boolean addProposal(Proposal proposal) {
+		proposal.setInitiative(this);
 		return proposals.add(proposal);
 	}
 

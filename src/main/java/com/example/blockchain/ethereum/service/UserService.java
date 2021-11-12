@@ -1,6 +1,7 @@
 package com.example.blockchain.ethereum.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.blockchain.ethereum.service.domain.UserVO;
 
@@ -12,7 +13,7 @@ public interface UserService {
 
 	List<UserVO> getUsers();
 	
-	UserVO findById(Long id);
+	Optional<UserVO> findById(Long id);
 	
 	UserVO login(String usermane, String password);
 	

@@ -89,12 +89,25 @@ public class InitiativeVO implements Serializable {
 	}
 
 	public InitiativeStatusEnum getStatus() {
-		return status;
+		return calculateStatus();
 	}
 
 	public InitiativeStatusEnum calculateStatus() {
+		OffsetDateTime now = OffsetDateTime.now();
+
+		if (now.compareTo(startDate) < 0) {
+			status = InitiativeStatusEnum.PENDING;
+		} else if (now.compareTo(endDate) < 0) {
+			status = InitiativeStatusEnum.ACTIVE;
+		} else {
+			status = InitiativeStatusEnum.FINISHED;
+		}
 
 		return status;
+	}
+	
+	public Long getNumProposals() {
+		return (long) proposals.size();
 	}
 
 }

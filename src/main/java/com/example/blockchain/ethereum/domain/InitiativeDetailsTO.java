@@ -1,23 +1,28 @@
 package com.example.blockchain.ethereum.domain;
 
 import java.util.Objects;
+import com.example.blockchain.ethereum.domain.InitiativeDetailsTOAllOf;
+import com.example.blockchain.ethereum.domain.InitiativeTO;
+import com.example.blockchain.ethereum.domain.ProposalTO;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.io.Serializable;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * InitiativeTO
+ * InitiativeDetailsTO
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
 
-public class InitiativeTO  implements Serializable {
+public class InitiativeDetailsTO  implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("id")
@@ -84,7 +89,11 @@ public class InitiativeTO  implements Serializable {
   @JsonProperty("numProposals")
   private Long numProposals;
 
-  public InitiativeTO id(Long id) {
+  @JsonProperty("proposals")
+  @Valid
+  private List<ProposalTO> proposals = new ArrayList<>();
+
+  public InitiativeDetailsTO id(Long id) {
     this.id = id;
     return this;
   }
@@ -105,7 +114,7 @@ public class InitiativeTO  implements Serializable {
     this.id = id;
   }
 
-  public InitiativeTO name(String name) {
+  public InitiativeDetailsTO name(String name) {
     this.name = name;
     return this;
   }
@@ -126,7 +135,7 @@ public class InitiativeTO  implements Serializable {
     this.name = name;
   }
 
-  public InitiativeTO description(String description) {
+  public InitiativeDetailsTO description(String description) {
     this.description = description;
     return this;
   }
@@ -147,7 +156,7 @@ public class InitiativeTO  implements Serializable {
     this.description = description;
   }
 
-  public InitiativeTO creationDate(OffsetDateTime creationDate) {
+  public InitiativeDetailsTO creationDate(OffsetDateTime creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -169,7 +178,7 @@ public class InitiativeTO  implements Serializable {
     this.creationDate = creationDate;
   }
 
-  public InitiativeTO startDate(OffsetDateTime startDate) {
+  public InitiativeDetailsTO startDate(OffsetDateTime startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -191,7 +200,7 @@ public class InitiativeTO  implements Serializable {
     this.startDate = startDate;
   }
 
-  public InitiativeTO endDate(OffsetDateTime endDate) {
+  public InitiativeDetailsTO endDate(OffsetDateTime endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -213,7 +222,7 @@ public class InitiativeTO  implements Serializable {
     this.endDate = endDate;
   }
 
-  public InitiativeTO status(StatusEnum status) {
+  public InitiativeDetailsTO status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -234,7 +243,7 @@ public class InitiativeTO  implements Serializable {
     this.status = status;
   }
 
-  public InitiativeTO numProposals(Long numProposals) {
+  public InitiativeDetailsTO numProposals(Long numProposals) {
     this.numProposals = numProposals;
     return this;
   }
@@ -255,6 +264,33 @@ public class InitiativeTO  implements Serializable {
     this.numProposals = numProposals;
   }
 
+  public InitiativeDetailsTO proposals(List<ProposalTO> proposals) {
+    this.proposals = proposals;
+    return this;
+  }
+
+  public InitiativeDetailsTO addProposalsItem(ProposalTO proposalsItem) {
+    this.proposals.add(proposalsItem);
+    return this;
+  }
+
+  /**
+   * Get proposals
+   * @return proposals
+  */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
+
+  @Valid
+
+  public List<ProposalTO> getProposals() {
+    return proposals;
+  }
+
+  public void setProposals(List<ProposalTO> proposals) {
+    this.proposals = proposals;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -264,26 +300,27 @@ public class InitiativeTO  implements Serializable {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InitiativeTO initiativeTO = (InitiativeTO) o;
-    return Objects.equals(this.id, initiativeTO.id) &&
-        Objects.equals(this.name, initiativeTO.name) &&
-        Objects.equals(this.description, initiativeTO.description) &&
-        Objects.equals(this.creationDate, initiativeTO.creationDate) &&
-        Objects.equals(this.startDate, initiativeTO.startDate) &&
-        Objects.equals(this.endDate, initiativeTO.endDate) &&
-        Objects.equals(this.status, initiativeTO.status) &&
-        Objects.equals(this.numProposals, initiativeTO.numProposals);
+    InitiativeDetailsTO initiativeDetailsTO = (InitiativeDetailsTO) o;
+    return Objects.equals(this.id, initiativeDetailsTO.id) &&
+        Objects.equals(this.name, initiativeDetailsTO.name) &&
+        Objects.equals(this.description, initiativeDetailsTO.description) &&
+        Objects.equals(this.creationDate, initiativeDetailsTO.creationDate) &&
+        Objects.equals(this.startDate, initiativeDetailsTO.startDate) &&
+        Objects.equals(this.endDate, initiativeDetailsTO.endDate) &&
+        Objects.equals(this.status, initiativeDetailsTO.status) &&
+        Objects.equals(this.numProposals, initiativeDetailsTO.numProposals) &&
+        Objects.equals(this.proposals, initiativeDetailsTO.proposals);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, description, creationDate, startDate, endDate, status, numProposals);
+    return Objects.hash(id, name, description, creationDate, startDate, endDate, status, numProposals, proposals);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InitiativeTO {\n");
+    sb.append("class InitiativeDetailsTO {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -293,6 +330,7 @@ public class InitiativeTO  implements Serializable {
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    numProposals: ").append(toIndentedString(numProposals)).append("\n");
+    sb.append("    proposals: ").append(toIndentedString(proposals)).append("\n");
     sb.append("}");
     return sb.toString();
   }

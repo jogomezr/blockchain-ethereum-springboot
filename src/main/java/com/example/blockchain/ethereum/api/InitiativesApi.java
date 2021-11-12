@@ -5,6 +5,7 @@
  */
 package com.example.blockchain.ethereum.api;
 
+import com.example.blockchain.ethereum.domain.InitiativeDetailsTO;
 import com.example.blockchain.ethereum.domain.InitiativeTO;
 import com.example.blockchain.ethereum.domain.NewInitiativeTO;
 import com.example.blockchain.ethereum.domain.ProposalTO;
@@ -29,7 +30,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-11T19:34:33.503177800+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
 
 @Validated
 @Api(value = "initiatives", description = "the initiatives API")
@@ -43,16 +44,16 @@ public interface InitiativesApi {
      *         or Invalid data (status code 400)
      *         or Internal server error (status code 500)
      */
-    @ApiOperation(value = "Create an initiative", nickname = "createInitiative", notes = "", response = NewInitiativeTO.class, tags={ "initiatives", })
+    @ApiOperation(value = "Create an initiative", nickname = "createInitiative", notes = "", response = InitiativeDetailsTO.class, tags={ "initiatives", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 201, message = "successful operation", response = NewInitiativeTO.class),
+        @ApiResponse(code = 201, message = "successful operation", response = InitiativeDetailsTO.class),
         @ApiResponse(code = 400, message = "Invalid data"),
         @ApiResponse(code = 500, message = "Internal server error") })
     @RequestMapping(value = "/initiatives",
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<NewInitiativeTO> _createInitiative(@ApiParam(value = "New initiative object" ,required=true )  @Valid @RequestBody NewInitiativeTO newInitiativeTO);
+    ResponseEntity<InitiativeDetailsTO> _createInitiative(@ApiParam(value = "New initiative object" ,required=true )  @Valid @RequestBody NewInitiativeTO newInitiativeTO);
 
 
     /**
@@ -102,16 +103,16 @@ public interface InitiativesApi {
      *         or Initiative not found (status code 404)
      *         or Internal server error (status code 500)
      */
-    @ApiOperation(value = "Returns the details of the requested initiative", nickname = "getInitiativeById", notes = "", response = InitiativeTO.class, tags={ "initiatives", })
+    @ApiOperation(value = "Returns the details of the requested initiative", nickname = "getInitiativeById", notes = "", response = InitiativeDetailsTO.class, tags={ "initiatives", })
     @ApiResponses(value = { 
-        @ApiResponse(code = 200, message = "successful operation", response = InitiativeTO.class),
+        @ApiResponse(code = 200, message = "successful operation", response = InitiativeDetailsTO.class),
         @ApiResponse(code = 400, message = "Invalid initiative ID"),
         @ApiResponse(code = 404, message = "Initiative not found"),
         @ApiResponse(code = 500, message = "Internal server error") })
     @RequestMapping(value = "/initiatives/{initiativeId}",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<InitiativeTO> _getInitiativeById(@ApiParam(value = "ID of initiative to return",required=true) @PathVariable("initiativeId") Long initiativeId);
+    ResponseEntity<InitiativeDetailsTO> _getInitiativeById(@ApiParam(value = "ID of initiative to return",required=true) @PathVariable("initiativeId") Long initiativeId);
 
 
     /**

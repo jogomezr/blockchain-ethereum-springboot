@@ -1,11 +1,15 @@
 package com.example.blockchain.ethereum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.blockchain.ethereum.persistence.InitiativeDAO;
+import com.example.blockchain.ethereum.persistence.entities.Initiative;
 import com.example.blockchain.ethereum.service.InitiativeService;
+import com.example.blockchain.ethereum.service.domain.InitiativeStatusEnum;
 import com.example.blockchain.ethereum.service.domain.InitiativeVO;
 import com.example.blockchain.ethereum.service.domain.ProposalVO;
 import com.example.blockchain.ethereum.service.mapper.InitiativeServiceMapper;
@@ -28,32 +32,42 @@ public class InitiativeServiceImpl implements InitiativeService {
 
 	@Override
 	public List<InitiativeVO> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<InitiativeVO> initiatives = new ArrayList<>();
+
+		initiativeDAO.findAll().forEach(initiative -> initiatives.add(initiativeMapper.transformToVO(initiative)));
+
+		return initiatives;
 	}
 
 	@Override
-	public InitiativeVO findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<InitiativeVO> findById(Long id) {
+		Optional<Initiative> initiative = initiativeDAO.findById(id);
+
+		return initiative.isPresent() ? Optional.of(initiativeMapper.transformToVO(initiative.get())) : Optional.empty();
 	}
 
 	@Override
 	public InitiativeVO add(InitiativeVO initiative) {
-		// TODO Auto-generated method stub
-		return null;
+		Initiative entity = initiativeDAO.save(initiativeMapper.transformToEntity(initiative));
+		
+		return initiativeMapper.transformToVO(entity);
 	}
 
 	@Override
 	public void remove(Long id) {
-		// TODO Auto-generated method stub
-
+		initiativeDAO.deleteById(id);
 	}
 
 	@Override
-	public ProposalVO getWinningProposal(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<ProposalVO> getWinningProposal(Long id) {
+		Optional<ProposalVO> proposal = Optional.empty();
+		Optional<InitiativeVO> initiative = findById(id);
+		
+		if (initiative.isPresent() && initiative.get().getStatus() == InitiativeStatusEnum.FINISHED) {
+			proposal = initiative.get().getProposals().stream().max((a,b) -> (int) (a.getVotes() - b.getVotes()));
+		}
+		
+		return proposal;
 	}
 
 }

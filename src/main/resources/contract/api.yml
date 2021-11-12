@@ -131,7 +131,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NewInitiativeTO'
+                $ref: '#/components/schemas/InitiativeDetailsTO'
         400:
           description: Invalid data
           content: {}
@@ -159,7 +159,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/InitiativeTO'
+                $ref: '#/components/schemas/InitiativeDetailsTO'
         400:
           description: Invalid initiative ID
           content: {}
@@ -329,10 +329,16 @@ components:
         numProposals:
           type: integer
           format: int64
-        proposals:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProposalTO'
+
+    InitiativeDetailsTO:
+      allOf:
+        - $ref: '#/components/schemas/InitiativeTO'
+        - type: object
+          properties:
+            proposals:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProposalTO'
 
     NewProposalTO:
       type: object

@@ -1,10 +1,13 @@
 package com.example.blockchain.ethereum.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.blockchain.ethereum.persistence.UserDAO;
+import com.example.blockchain.ethereum.persistence.entities.User;
 import com.example.blockchain.ethereum.service.UserService;
 import com.example.blockchain.ethereum.service.domain.UserVO;
 import com.example.blockchain.ethereum.service.mapper.UserServiceMapper;
@@ -15,11 +18,11 @@ import com.example.blockchain.ethereum.service.mapper.UserServiceMapper;
  */
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	private UserServiceMapper userMapper;
-	
+
 	private UserDAO userDAO;
-	
+
 	public UserServiceImpl(UserServiceMapper userMapper, UserDAO userDAO) {
 		this.userMapper = userMapper;
 		this.userDAO = userDAO;
@@ -27,14 +30,18 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserVO> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<UserVO> users = new ArrayList<>();
+
+		userDAO.findAll().forEach(user -> users.add(userMapper.transformToVO(user)));
+
+		return users;
 	}
 
 	@Override
-	public UserVO findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Optional<UserVO> findById(Long id) {
+		Optional<User> user = userDAO.findById(id);
+
+		return user.isPresent() ? Optional.of(userMapper.transformToVO(user.get())) : Optional.empty();
 	}
 
 	@Override
