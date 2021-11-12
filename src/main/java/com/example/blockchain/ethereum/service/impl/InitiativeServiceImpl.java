@@ -1,5 +1,6 @@
 package com.example.blockchain.ethereum.service.impl;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,8 @@ import com.example.blockchain.ethereum.service.mapper.InitiativeServiceMapper;
 @Service
 public class InitiativeServiceImpl implements InitiativeService {
 
+	private static final Long ZERO_VOTES = 0L;
+	
 	private InitiativeServiceMapper initiativeMapper;
 
 	private InitiativeDAO initiativeDAO;
@@ -48,9 +51,13 @@ public class InitiativeServiceImpl implements InitiativeService {
 
 	@Override
 	public InitiativeVO add(InitiativeVO initiative) {
-		Initiative entity = initiativeDAO.save(initiativeMapper.transformToEntity(initiative));
+		Initiative entity = initiativeMapper.transformToEntity(initiative);
+		entity.setCreationDate(LocalDateTime.now());
+		entity.getProposals().stream().forEach(p -> {p.setInitiative(entity); p.setVotes(ZERO_VOTES);});
 		
-		return initiativeMapper.transformToVO(entity);
+		Initiative createdEntity = initiativeDAO.save(entity);		
+		
+		return initiativeMapper.transformToVO(createdEntity);
 	}
 
 	@Override

@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -17,7 +16,7 @@ import javax.validation.constraints.*;
 /**
  * NewInitiativeTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T14:06:22.439619200+01:00[Europe/Paris]")
 
 public class NewInitiativeTO  implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -28,17 +27,11 @@ public class NewInitiativeTO  implements Serializable {
   @JsonProperty("description")
   private String description;
 
-  @JsonProperty("creationDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime creationDate;
-
   @JsonProperty("startDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime startDate;
+  private String startDate;
 
   @JsonProperty("endDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime endDate;
+  private String endDate;
 
   @JsonProperty("proposals")
   @Valid
@@ -86,29 +79,7 @@ public class NewInitiativeTO  implements Serializable {
     this.description = description;
   }
 
-  public NewInitiativeTO creationDate(OffsetDateTime creationDate) {
-    this.creationDate = creationDate;
-    return this;
-  }
-
-  /**
-   * Get creationDate
-   * @return creationDate
-  */
-  @ApiModelProperty(required = true, value = "")
-  @NotNull
-
-  @Valid
-
-  public OffsetDateTime getCreationDate() {
-    return creationDate;
-  }
-
-  public void setCreationDate(OffsetDateTime creationDate) {
-    this.creationDate = creationDate;
-  }
-
-  public NewInitiativeTO startDate(OffsetDateTime startDate) {
+  public NewInitiativeTO startDate(String startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -117,20 +88,19 @@ public class NewInitiativeTO  implements Serializable {
    * Get startDate
    * @return startDate
   */
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2011-12-03T10:15:30", required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public OffsetDateTime getStartDate() {
+  public String getStartDate() {
     return startDate;
   }
 
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
 
-  public NewInitiativeTO endDate(OffsetDateTime endDate) {
+  public NewInitiativeTO endDate(String endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -139,16 +109,15 @@ public class NewInitiativeTO  implements Serializable {
    * Get endDate
    * @return endDate
   */
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2011-12-03T10:15:30", required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public OffsetDateTime getEndDate() {
+  public String getEndDate() {
     return endDate;
   }
 
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
 
@@ -191,7 +160,6 @@ public class NewInitiativeTO  implements Serializable {
     NewInitiativeTO newInitiativeTO = (NewInitiativeTO) o;
     return Objects.equals(this.name, newInitiativeTO.name) &&
         Objects.equals(this.description, newInitiativeTO.description) &&
-        Objects.equals(this.creationDate, newInitiativeTO.creationDate) &&
         Objects.equals(this.startDate, newInitiativeTO.startDate) &&
         Objects.equals(this.endDate, newInitiativeTO.endDate) &&
         Objects.equals(this.proposals, newInitiativeTO.proposals);
@@ -199,7 +167,7 @@ public class NewInitiativeTO  implements Serializable {
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, description, creationDate, startDate, endDate, proposals);
+    return Objects.hash(name, description, startDate, endDate, proposals);
   }
 
   @Override
@@ -209,7 +177,6 @@ public class NewInitiativeTO  implements Serializable {
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
-    sb.append("    creationDate: ").append(toIndentedString(creationDate)).append("\n");
     sb.append("    startDate: ").append(toIndentedString(startDate)).append("\n");
     sb.append("    endDate: ").append(toIndentedString(endDate)).append("\n");
     sb.append("    proposals: ").append(toIndentedString(proposals)).append("\n");

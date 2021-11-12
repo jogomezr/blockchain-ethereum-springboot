@@ -1,13 +1,14 @@
 package com.example.blockchain.ethereum.persistence.entities;
 
 import java.io.Serializable;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -26,7 +27,7 @@ public class Initiative implements Serializable {
 	private static final long serialVersionUID = 2997135892415342133L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(name = "NAME", nullable = false)
@@ -36,14 +37,13 @@ public class Initiative implements Serializable {
 	private String description;
 
 	@Column(name = "CREATION_DATE", columnDefinition = "TIME WITH TIME ZONE", nullable = false)
-	private OffsetDateTime creationDate;
+	private LocalDateTime creationDate;
 
 	@Column(name = "START_DATE", columnDefinition = "TIME WITH TIME ZONE", nullable = false)
-	private OffsetDateTime startDate;
+	private LocalDateTime startDate;
 
 	@Column(name = "END_DATE", columnDefinition = "TIME WITH TIME ZONE", nullable = false)
-	@org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-	private OffsetDateTime endDate;
+	private LocalDateTime endDate;
 
 	@OneToMany(mappedBy = "initiative", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Proposal> proposals;
@@ -72,27 +72,27 @@ public class Initiative implements Serializable {
 		this.description = description;
 	}
 
-	public OffsetDateTime getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(OffsetDateTime creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public OffsetDateTime getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(OffsetDateTime startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public OffsetDateTime getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(OffsetDateTime endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 

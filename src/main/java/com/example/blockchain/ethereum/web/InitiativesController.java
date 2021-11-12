@@ -78,7 +78,7 @@ public class InitiativesController implements InitiativesApi {
 		Optional<InitiativeVO> initiative = initiativeService.findById(initiativeId);
 
 		if (initiative.isPresent()) {
-			status = HttpStatus.ACCEPTED;
+			status = HttpStatus.OK;
 			payload = initiativeMapper.transformToDetailsTO(initiative.get());
 		}
 
@@ -87,13 +87,13 @@ public class InitiativesController implements InitiativesApi {
 
 	@Override
 	public ResponseEntity<ProposalTO> _getWinningProposal(Long initiativeId) {
-		HttpStatus status = HttpStatus.NOT_FOUND;
+		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ProposalTO payload = null;
 
 		Optional<ProposalVO> proposal = initiativeService.getWinningProposal(initiativeId);
 
 		if (proposal.isPresent()) {
-			status = HttpStatus.ACCEPTED;
+			status = HttpStatus.OK;
 			payload = proposalMapper.transformToTO(proposal.get());
 		}
 

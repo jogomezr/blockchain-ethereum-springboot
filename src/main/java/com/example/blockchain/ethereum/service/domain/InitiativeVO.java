@@ -1,6 +1,7 @@
 package com.example.blockchain.ethereum.service.domain;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,11 +23,11 @@ public class InitiativeVO implements Serializable {
 
 	private String description;
 
-	private OffsetDateTime creationDate;
+	private LocalDateTime creationDate;
 
-	private OffsetDateTime startDate;
+	private LocalDateTime startDate;
 
-	private OffsetDateTime endDate;
+	private LocalDateTime endDate;
 
 	private InitiativeStatusEnum status;
 
@@ -56,27 +57,27 @@ public class InitiativeVO implements Serializable {
 		this.description = description;
 	}
 
-	public OffsetDateTime getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(OffsetDateTime creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public OffsetDateTime getStartDate() {
+	public LocalDateTime getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(OffsetDateTime startDate) {
+	public void setStartDate(LocalDateTime startDate) {
 		this.startDate = startDate;
 	}
 
-	public OffsetDateTime getEndDate() {
+	public LocalDateTime getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(OffsetDateTime endDate) {
+	public void setEndDate(LocalDateTime endDate) {
 		this.endDate = endDate;
 	}
 
@@ -93,7 +94,7 @@ public class InitiativeVO implements Serializable {
 	}
 
 	public InitiativeStatusEnum calculateStatus() {
-		OffsetDateTime now = OffsetDateTime.now();
+		LocalDateTime now = LocalDateTime.now();
 
 		if (now.compareTo(startDate) < 0) {
 			status = InitiativeStatusEnum.PENDING;

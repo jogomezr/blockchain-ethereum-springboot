@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import java.time.OffsetDateTime;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.io.Serializable;
 import javax.validation.Valid;
@@ -15,7 +14,7 @@ import javax.validation.constraints.*;
 /**
  * InitiativeTO
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T14:06:22.439619200+01:00[Europe/Paris]")
 
 public class InitiativeTO  implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -30,16 +29,13 @@ public class InitiativeTO  implements Serializable {
   private String description;
 
   @JsonProperty("creationDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime creationDate;
+  private String creationDate;
 
   @JsonProperty("startDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime startDate;
+  private String startDate;
 
   @JsonProperty("endDate")
-  @org.springframework.format.annotation.DateTimeFormat(iso = org.springframework.format.annotation.DateTimeFormat.ISO.DATE_TIME)
-  private OffsetDateTime endDate;
+  private String endDate;
 
   /**
    * Gets or Sets status
@@ -147,7 +143,7 @@ public class InitiativeTO  implements Serializable {
     this.description = description;
   }
 
-  public InitiativeTO creationDate(OffsetDateTime creationDate) {
+  public InitiativeTO creationDate(String creationDate) {
     this.creationDate = creationDate;
     return this;
   }
@@ -156,20 +152,19 @@ public class InitiativeTO  implements Serializable {
    * Get creationDate
    * @return creationDate
   */
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2011-12-03T10:15:30", required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public OffsetDateTime getCreationDate() {
+  public String getCreationDate() {
     return creationDate;
   }
 
-  public void setCreationDate(OffsetDateTime creationDate) {
+  public void setCreationDate(String creationDate) {
     this.creationDate = creationDate;
   }
 
-  public InitiativeTO startDate(OffsetDateTime startDate) {
+  public InitiativeTO startDate(String startDate) {
     this.startDate = startDate;
     return this;
   }
@@ -178,20 +173,19 @@ public class InitiativeTO  implements Serializable {
    * Get startDate
    * @return startDate
   */
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2011-12-03T10:15:30", required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public OffsetDateTime getStartDate() {
+  public String getStartDate() {
     return startDate;
   }
 
-  public void setStartDate(OffsetDateTime startDate) {
+  public void setStartDate(String startDate) {
     this.startDate = startDate;
   }
 
-  public InitiativeTO endDate(OffsetDateTime endDate) {
+  public InitiativeTO endDate(String endDate) {
     this.endDate = endDate;
     return this;
   }
@@ -200,16 +194,15 @@ public class InitiativeTO  implements Serializable {
    * Get endDate
    * @return endDate
   */
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(example = "2011-12-03T10:15:30", required = true, value = "")
   @NotNull
 
-  @Valid
 
-  public OffsetDateTime getEndDate() {
+  public String getEndDate() {
     return endDate;
   }
 
-  public void setEndDate(OffsetDateTime endDate) {
+  public void setEndDate(String endDate) {
     this.endDate = endDate;
   }
 

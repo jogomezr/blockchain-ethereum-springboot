@@ -16,14 +16,14 @@ import javax.validation.constraints.*;
 /**
  * InitiativeDetailsTOAllOf
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T12:03:47.180847300+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2021-11-12T14:06:22.439619200+01:00[Europe/Paris]")
 
 public class InitiativeDetailsTOAllOf  implements Serializable {
   private static final long serialVersionUID = 1L;
 
   @JsonProperty("proposals")
   @Valid
-  private List<ProposalTO> proposals = null;
+  private List<ProposalTO> proposals = new ArrayList<>();
 
   public InitiativeDetailsTOAllOf proposals(List<ProposalTO> proposals) {
     this.proposals = proposals;
@@ -31,9 +31,6 @@ public class InitiativeDetailsTOAllOf  implements Serializable {
   }
 
   public InitiativeDetailsTOAllOf addProposalsItem(ProposalTO proposalsItem) {
-    if (this.proposals == null) {
-      this.proposals = new ArrayList<>();
-    }
     this.proposals.add(proposalsItem);
     return this;
   }
@@ -42,7 +39,8 @@ public class InitiativeDetailsTOAllOf  implements Serializable {
    * Get proposals
    * @return proposals
   */
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
+  @NotNull
 
   @Valid
 

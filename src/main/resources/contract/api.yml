@@ -268,7 +268,6 @@ components:
       required:
       - name
       - description
-      - creationDate
       - startDate
       - endDate
       - proposals
@@ -277,15 +276,14 @@ components:
           type: string
         description:
           type: string
-        creationDate:
-          type: string
-          format: date-time
         startDate:
           type: string
-          format: date-time
+          format: 'yyyy-MM-ddTHH:mm:ss'
+          example: '2011-12-03T10:15:30'
         endDate:
           type: string
-          format: date-time
+          format: 'yyyy-MM-ddTHH:mm:ss'
+          example: '2011-12-03T10:15:30'
         proposals:
           type: array
           items:
@@ -302,7 +300,6 @@ components:
       - endDate
       - status
       - numProposals
-      - proposals
       properties:
         id:
           type: integer
@@ -313,13 +310,16 @@ components:
           type: string
         creationDate:
           type: string
-          format: date-time
+          format: 'yyyy-MM-ddTHH:mm:ss'
+          example: '2011-12-03T10:15:30'
         startDate:
           type: string
-          format: date-time
+          format: 'yyyy-MM-ddTHH:mm:ss'
+          example: '2011-12-03T10:15:30'
         endDate:
           type: string
-          format: date-time
+          format: 'yyyy-MM-ddTHH:mm:ss'
+          example: '2011-12-03T10:15:30'
         status:
           type: string
           enum:
@@ -334,6 +334,8 @@ components:
       allOf:
         - $ref: '#/components/schemas/InitiativeTO'
         - type: object
+          required:
+          - proposals
           properties:
             proposals:
               type: array
